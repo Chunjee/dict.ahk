@@ -1,7 +1,7 @@
 Creates a new entry in the dictionary.
 
-## Aliases
-`.update`
+#### Aliases
+`.create`, `.update`
 
 ## Arguments
 key (string): The key to create the value at

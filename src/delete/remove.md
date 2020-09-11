@@ -1,6 +1,6 @@
 Creates a new entry in the dictionary.
 
-## Aliases
+#### Aliases
 `.delete`
 
 ## Arguments
