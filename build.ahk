@@ -9,7 +9,7 @@
 
 
 ; FilePaths
-Readme_File := A_ScriptDir "\docs\README.md"
+Readme_File := A_ScriptDir "\README.md"
 lib_File := A_ScriptDir "\export.ahk"
 test_File := A_ScriptDir "\tests\test-all.ahk"
 
@@ -39,7 +39,7 @@ testfalse := "false\((.+\.\w+)(.+\))\)"
 testnotequal := "notequal\(testDict(\.\w*.*\)),\s*(.*)\)"
 
 ; alias map
-aliasMap := {"set": ["update"], "remove": ["delete"]}
+aliasMap := {"set": [,"create", "update"], "remove": ["delete"]}
 
 ; method names
 vMethodNames_Array := []
@@ -47,7 +47,7 @@ vMethodNames_Array := []
 loop, Files, %A_ScriptDir%\src\*.ahk, R
 {
 	FileRead, The_MemoryFile, % A_LoopFileFullPath
-	
+
 	; chunk that b
 	bbb := {}
 	bbb.raw := The_MemoryFile
@@ -67,7 +67,7 @@ loop, Files, %A_ScriptDir%\src\*.ahk, R
 	if (foundIndex := A.indexOf(ommitMethodsArr, bbb.name) != -1) {
 		continue
 	}
-	
+
 	; markdown file
 	markdown_File := A_LoopFileDir "\" bbb.name ".md"
 	if (!FileExist(markdown_File)) {

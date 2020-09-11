@@ -66,8 +66,8 @@ valueArr (array): The array of values to add to the dictionary
 ## .set
 Creates a new entry in the dictionary.
 
-## Aliases
-`.update`
+#### Aliases
+`.create`, `.update`
 
 #### Arguments
 key (string): The key to create the value at
@@ -98,13 +98,22 @@ none
 
 #### Example
 
+```autohotkey
+A.clear()
+; => true
+
+A.data.Count()
+; => 0
+
+```
+
 
 
 
 ## .remove
 Creates a new entry in the dictionary.
 
-## Aliases
+#### Aliases
 `.delete`
 
 #### Arguments
@@ -143,3 +152,14 @@ key (string): The key to lookup in the dictionary
 
 #### Returns
 (boolean): `true` if the key exists, else `false`
+
+
+
+
+
+## .size
+
+
+
+
+
