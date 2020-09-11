@@ -223,12 +223,12 @@ fn_BuildExample(param_tests) {
 
 		hey := Fn_QuickRegEx(Value,testtest,0)
 		if (hey.count() = 2) {
-			return_array.push("ExampleDict" hey.Value(1) "`n; => " hey.Value(2) newline newline)
+			return_array.push("exampleDict" hey.Value(1) "`n; => " hey.Value(2) newline newline)
 			continue
 		}
 		hey := Fn_QuickRegEx(Value,testnotequal,0)
 		if (hey.count() = 2) {
-			return_array.push("ExampleDict" hey.Value(1) "`n; => " hey.Value(2) newline newline)
+			return_array.push("exampleDict" hey.Value(1) "`n; => " hey.Value(2) newline newline)
 			continue
 		}
 		hey := Fn_QuickRegEx(Value,testtrue,0)
