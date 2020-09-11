@@ -39,7 +39,7 @@ testfalse := "false\((.+\.\w+)(.+\))\)"
 testnotequal := "notequal\(\w+(\.\w*.*\)),\s*(.*)\)"
 
 ; alias map
-aliasMap := {"set": [,"create", "update"], "remove": ["delete"]}
+aliasMap := {"set": [,"create", "update"], "get":["__get"], "remove":["delete"]}
 
 ; method names
 vMethodNames_Array := []
