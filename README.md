@@ -28,6 +28,17 @@ exampleDict.has(404)
 You may also review or copy the package from [./export.ahk on GitHub](https://raw.githubusercontent.com/chunjee/dict.ahk/master/export.ahk); #Include it however you would normally when manually downloading.
 
 
+### Attributes
+
+The following attributes are accessible at all times:
+
+`.size`
+Contains the current `.Count()` length of the dictionary. There is no dedicated method for retrieving this value at this time.
+
+`.data`
+Contains all Key/Value pairs of the dictionary. Iterating is discouraged and no order is enforced.
+
+
 ## API
 
 Including the module provides a class `dict` with seven methods: `.set`, `.get`, `.has`, `.map`, `.remove`, `.clear`, `.clone`
@@ -136,7 +147,10 @@ none
 exampleDict.clear()
 ; => true
 
-assert.test(exampleDict.size, 0)```
+exampleDict.size
+; => 0
+
+```
 
 
 
@@ -157,7 +171,8 @@ key (string): The key to remove from the dictionary
 #### Example
 
 ```autohotkey
-exampleDict.map([200, 403, 404], ["OK", "Access forbidden", "File not found"])exampleDict.remove(200)
+exampleDict.map([200, 403, 404], ["OK", "Access forbidden", "File not found"])
+exampleDict.remove(200)
 ; => true
 
 exampleDict.remove(403)
@@ -169,7 +184,10 @@ exampleDict.remove(404)
 exampleDict.remove(500)
 ; => false
 
-assert.test(exampleDict.size, 0)```
+exampleDict.size
+; => 0
+
+```
 
 
 
@@ -189,7 +207,8 @@ key (string): The key to lookup in the dictionary
 #### Example
 
 ```autohotkey
-exampleDict.map([200, 403, 404], ["OK", "Access forbidden", "File not found"])exampleDict.get(200)
+exampleDict.map([200, 403, 404], ["OK", "Access forbidden", "File not found"])
+exampleDict.get(200)
 ; => "OK"
 
 ```
@@ -210,20 +229,8 @@ key (string): The key to lookup in the dictionary
 #### Example
 
 ```autohotkey
-exampleDict.map([200, 403, 404], ["OK", "Access forbidden", "File not found"])exampleDict.has(200)
+exampleDict.map([200, 403, 404], ["OK", "Access forbidden", "File not found"])
+exampleDict.has(200)
 ; => true
 
 ```
-
-
-
-## .size
-
-
-#### Example
-
-```autohotkey
-exampleDict.clear()```
-
-
-
