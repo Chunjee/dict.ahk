@@ -25,7 +25,7 @@ exampleDict.clear()
 assert.label("map()")
 assert.test(exampleDict.map([200, 403, 404], ["OK", "Access forbidden", "File not found"]), 3)
 assert.test(exampleDict.get(200), "OK")
-assert.test(exampleDict.map(["test"], ["hey"]), 4)
+assert.test(exampleDict.map([500], ["Internal Server Error"]), 4)
 
 ; omit
 exampleDict.clear()
@@ -58,7 +58,9 @@ assert.true(exampleDict.remove(403))
 assert.true(exampleDict.remove(404))
 assert.false(exampleDict.remove(500))
 assert.test(exampleDict.size, 0)
+
 ; omit
+exampleDict.clear()
 
 
 assert.label("internal()")
