@@ -97,6 +97,16 @@ class dict {	; --- Static Variables ---	__New(param_default:="") {				this.
 		}
 		return false
 	}
+	create(param_key, param_value) {
+
+		; prepare
+		vHash := this._hash(param_key)
+
+		; perform
+		this.data[vHash] := param_value
+		this.size := this.data.Count()
+		return this.size
+	}
 	update(param_key, param_value) {
 
 		; prepare
