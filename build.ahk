@@ -25,7 +25,7 @@ categoryRegEx := "src\\(.+)\\\w+\.\w{2,3}"
 newline := "`r`n" ;do not change this as docsify needs `r
 
 ; Arrays that control doc and test output. For ommiting or only testing certain areas
-ignoreMethodDocsArr := ["internal", "intersectionBy"]
+ignoreMethodDocsArr := ["internal"]
 ommitMethodsArr := [""]
 onlyTestArr := [""]
 
@@ -33,10 +33,10 @@ The_Array := [] ; Holds main data
 msgarray := []
 
 ; Test RegEx
-testtest := "test\(testDict(\.\w*.*\)),\s*(.*)\)"
+testtest := "test\(\w+(\.\w*.*\)),\s*(.*)\)"
 testtrue := "true\((.+?)(\(.+?\))\)"
 testfalse := "false\((.+\.\w+)(.+\))\)"
-testnotequal := "notequal\(testDict(\.\w*.*\)),\s*(.*)\)"
+testnotequal := "notequal\(\w+(\.\w*.*\)),\s*(.*)\)"
 
 ; alias map
 aliasMap := {"set": [,"create", "update"], "remove": ["delete"]}
@@ -76,15 +76,18 @@ loop, Files, %A_ScriptDir%\src\*.ahk, R
 	FileRead, The_MemoryFile, % markdown_File
 	bbb.doc := The_MemoryFile
 
-	;lib
+	; lib
 	bbb.lib := StrSplit(bbb.raw, "; tests")[1]
 	; tests
 	bbb.tests := StrSplit(bbb.raw, "; tests")[2]
 
-	bbb.doc := A.replace(bbb.doc,"/\#{1,10}\s*Returns*/", "#### Returns") ;replace accidental headers
-	bbb.doc := A.replace(bbb.doc,"/\#{1,10}\s*Arguments*/", "#### Arguments") ;replace accidental headers
-	bbb.doc := A.replace(bbb.doc,"/\#{1,10}\s*Examples*/", "#### Example") ;replace accidental headers
-	bbb.doc := A.replace(bbb.doc,");", ")") ;replace accidental js semicolons
+	; replace accidental headers
+	bbb.doc := A.replace(bbb.doc,"/\#{1,10}\s*Returns*/", "#### Returns")
+	bbb.doc := A.replace(bbb.doc,"/\#{1,10}\s*Arguments*/", "#### Arguments")
+	bbb.doc := A.replace(bbb.doc,"/\#{1,10}\s*Examples*/", "#### Example")
+	bbb.doc := A.replace(bbb.doc,"/\#{1,10}\s*Aliases*/", "#### Aliases")
+	bbb.doc := A.replace(bbb.doc,");", ")")
+	; replace accidental js semicolons
 	The_Array.push(bbb)
 }
 ; The_Array := A.sortBy(The_Array,["name", "category"])
@@ -146,14 +149,14 @@ loop, % The_Array.Count() {
 	}
 	txt.push("## " "." element.name newline element.doc newline newline)
 	; if examples not staticly defined in .md file, parse tests for use in documentation
-	if (!A.includes(element.doc,"Example") && A.includes(element.tests, "A.")) {
+	if (!A.includes(element.doc,"Example") && A.includes(element.tests, "exampleDict.")) {
 		txt.push("#### Example" newline newline "``````autohotkey" newline)
 		ExampleArray := fn_BuildExample(StrSplit(element.tests, "`n"))
 		ExampleArray.push("``````" newline newline)
 		txt := A.concat(txt,ExampleArray)
 	}
-	txt.push(newline newline newline)
-	DOCS_Array := A.concat(DOCS_Array,txt)
+	txt.push(newline newline)
+	DOCS_Array := A.concat(DOCS_Array, txt)
 }
 loop, % DOCS_Array.Count() {
 	FileAppend, % DOCS_Array[A_Index], % Readme_File
@@ -220,12 +223,12 @@ fn_BuildExample(param_tests) {
 
 		hey := Fn_QuickRegEx(Value,testtest,0)
 		if (hey.count() = 2) {
-			return_array.push("A" hey.Value(1) "`n; => " hey.Value(2) newline newline)
+			return_array.push("ExampleDict" hey.Value(1) "`n; => " hey.Value(2) newline newline)
 			continue
 		}
 		hey := Fn_QuickRegEx(Value,testnotequal,0)
 		if (hey.count() = 2) {
-			return_array.push("A" hey.Value(1) "`n; => " hey.Value(2) newline newline)
+			return_array.push("ExampleDict" hey.Value(1) "`n; => " hey.Value(2) newline newline)
 			continue
 		}
 		hey := Fn_QuickRegEx(Value,testtrue,0)
