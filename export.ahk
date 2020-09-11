@@ -28,6 +28,7 @@ class dict {	; --- Static Variables ---	__New(param_default:="") {				this.
 
 		; perform
 		this.data := []
+		this.size := this.data.Count()
 		return true
 	}
 	remove(param_key) {
@@ -38,6 +39,7 @@ class dict {	; --- Static Variables ---	__New(param_default:="") {				this.
 		; perform
 		if (this.get(vHash)) {
 			this.data.Delete(vHash)
+			this.size := this.data.Count()
 			return true
 		}
 		return false
@@ -125,6 +127,7 @@ class dict {	; --- Static Variables ---	__New(param_default:="") {				this.
 		; perform
 		if (this.get(vHash)) {
 			this.data.Delete(vHash)
+			this.size := this.data.Count()
 			return true
 		}
 		return false

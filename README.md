@@ -16,11 +16,12 @@ In your code:
 #Include %A_ScriptDir%\node_modules
 #Include dict.ahk\export.ahk
 
-testDict.map([200, 403, 404], ["OK", "Access forbidden", "File not found"])
-msgbox, % testDict.get(200)
+exampleDict := new dict()
+exampleDict.map([200, 403, 404], ["OK", "Access forbidden", "File not found"])
+msgbox, % exampleDict.get(200)
 ; => "OK"
 
-testDict.has(404)
+exampleDict.has(404)
 ; => true
 ```
 
@@ -30,7 +31,6 @@ You may also review or copy the package from [./export.ahk on GitHub](https://ra
 ## API
 
 Including the module provides a class `dict` with seven methods: `.set`, `.get`, `.has`, `.map`, `.remove`, `.clear`, `.clone`
-
 
 # **Create methods**
 ## .clone
@@ -43,6 +43,14 @@ none
 #### Returns
 (array): A new clone of the dictionary.
 
+#### Example
+```autohotkey
+exampleDict.map([200, 403, 404], ["OK", "Access forbidden", "File not found"])
+
+dictClone := exampleDict.clone()
+dictClone.has(200)
+; => true
+```
 
 
 
@@ -60,6 +68,19 @@ valueArr (array): The array of values to add to the dictionary
 (number): The dictionaries new `.Count()` length
 
 
+#### Example
+
+```autohotkey
+exampleDict.map([200, 403, 404], ["OK", "Access forbidden", "File not found"])
+; => 3
+
+exampleDict.get(200)
+; => "OK"
+
+exampleDict.map([500], ["Internal Server Error"])
+; => 4
+
+```
 
 
 
@@ -79,6 +100,19 @@ value (*): The value to associate with the key
 (number): The dictionaries new `.Count()` length
 
 
+#### Example
+
+```autohotkey
+exampleDict.set(200, "OK")
+; => 1
+
+exampleDict.set(403, "Access forbidden")
+; => 2
+
+exampleDict.set(404, "File not found")
+; => 3
+
+```
 
 
 
@@ -99,14 +133,10 @@ none
 #### Example
 
 ```autohotkey
-A.clear()
+exampleDict.clear()
 ; => true
 
-A.data.Count()
-; => 0
-
-```
-
+assert.test(exampleDict.size, 0)```
 
 
 
@@ -124,6 +154,22 @@ key (string): The key to remove from the dictionary
 (boolean): `true` if the key was removed, else `false`
 
 
+#### Example
+
+```autohotkey
+exampleDict.map([200, 403, 404], ["OK", "Access forbidden", "File not found"])exampleDict.remove(200)
+; => true
+
+exampleDict.remove(403)
+; => true
+
+exampleDict.remove(404)
+; => true
+
+exampleDict.remove(500)
+; => false
+
+assert.test(exampleDict.size, 0)```
 
 
 
@@ -140,6 +186,13 @@ key (string): The key to lookup in the dictionary
 (*): The value associated with the key, else `false`
 
 
+#### Example
+
+```autohotkey
+exampleDict.map([200, 403, 404], ["OK", "Access forbidden", "File not found"])exampleDict.get(200)
+; => "OK"
+
+```
 
 
 
@@ -154,12 +207,23 @@ key (string): The key to lookup in the dictionary
 (boolean): `true` if the key exists, else `false`
 
 
+#### Example
+
+```autohotkey
+exampleDict.map([200, 403, 404], ["OK", "Access forbidden", "File not found"])exampleDict.has(200)
+; => true
+
+```
 
 
 
 ## .size
 
 
+#### Example
+
+```autohotkey
+exampleDict.clear()```
 
 
 
