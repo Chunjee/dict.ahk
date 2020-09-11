@@ -16,11 +16,12 @@ In your code:
 #Include %A_ScriptDir%\node_modules
 #Include dict.ahk\export.ahk
 
-testDict.map([200, 403, 404], ["OK", "Access forbidden", "File not found"])
-msgbox, % testDict.get(200)
+exampleDict := new dict()
+exampleDict.map([200, 403, 404], ["OK", "Access forbidden", "File not found"])
+msgbox, % exampleDict.get(200)
 ; => "OK"
 
-testDict.has(404)
+exampleDict.has(404)
 ; => true
 ```
 
@@ -30,4 +31,3 @@ You may also review or copy the package from [./export.ahk on GitHub](https://ra
 ## API
 
 Including the module provides a class `dict` with seven methods: `.set`, `.get`, `.has`, `.map`, `.remove`, `.clear`, `.clone`
-
