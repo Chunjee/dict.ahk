@@ -14,9 +14,9 @@ map(param_keyArr, param_valueArr) {
 
 
 ; tests
-assert.test(testDict.map([200, 403, 404], ["OK", "Access forbidden", "File not found"]), 3)
-assert.test(testDict.get(200), "OK")
-assert.test(testDict.map(["test"], ["hey"]), 4)
+assert.test(exampleDict.map([200, 403, 404], ["OK", "Access forbidden", "File not found"]), 3)
+assert.test(exampleDict.get(200), "OK")
+assert.test(exampleDict.map(["test"], ["hey"]), 4)
 
 ; omit
-testDict.clear()
+exampleDict.clear()

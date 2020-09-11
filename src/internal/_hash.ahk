@@ -34,8 +34,8 @@ _hash(param_key) {
 
 
 ; tests
-assert.test(testDict._hash(200), 200)
-assert.test(testDict._hash(2000), 2000)
-assert.test(testDict._hash(2000.1), 4656511348273210982)
+assert.test(exampleDict._hash(200), 200)
+assert.test(exampleDict._hash(2000), 2000)
+assert.test(exampleDict._hash(2000.1), 4656511348273210982)
 
 ; omit

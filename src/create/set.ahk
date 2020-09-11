@@ -11,12 +11,12 @@ set(param_key, param_value) {
 
 
 ; tests
-array := [1]
-assert.test(testDict.set(200, "OK"), 1)
-assert.test(testDict.set(403, "Access forbidden"), 2)
-assert.test(testDict.set(404, "File not found"), 3)
+assert.test(exampleDict.set(200, "OK"), 1)
+assert.test(exampleDict.set(403, "Access forbidden"), 2)
+assert.test(exampleDict.set(404, "File not found"), 3)
 
 ; omit
 
-assert.test(testDict.update(404, "File not found"), 3)
-testDict.clear()
+assert.test(exampleDict.update(404, "File not found"), 3)
+assert.test(exampleDict.update(500, "Internal Server Error"), 4)
+exampleDict.clear()

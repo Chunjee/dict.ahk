@@ -12,8 +12,8 @@
 
 
 ; tests
-testDict.map([200, 403, 404], ["OK", "Access forbidden", "File not found"])
-assert.true(testDict.has(200))
+exampleDict.map([200, 403, 404], ["OK", "Access forbidden", "File not found"])
+assert.true(exampleDict.has(200))
 
 ; omit
-testDict.clear()
+exampleDict.clear()

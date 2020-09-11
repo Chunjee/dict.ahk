@@ -2,13 +2,14 @@ clear() {
 
 	; perform
 	this.data := []
+	this.size := this.data.Count()
 	return true
 }
 
 
 ; tests
-assert.test(testDict.clear(), true)
-assert.test(testDict.data.Count(), 0)
+assert.test(exampleDict.clear(), true)
+assert.test(exampleDict.size, 0)
 
 ; omit
-testDict.clear()
+exampleDict.clear()

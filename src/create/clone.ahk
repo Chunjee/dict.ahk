@@ -5,9 +5,9 @@ clone() {
 
 ; tests
 assert.label("clone - check that new clone has methods")
-testDict.map([200, 403, 404], ["OK", "Access forbidden", "File not found"])
-dictClone := testDict.clone()
+exampleDict.map([200, 403, 404], ["OK", "Access forbidden", "File not found"])
+dictClone := exampleDict.clone()
 assert.test(dictClone.has(200), true)
 
 ; omit
-testDict.clear()
+exampleDict.clear()

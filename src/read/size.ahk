@@ -1,7 +1,7 @@
 ﻿
 ; tests
-testDict.clear()
+exampleDict.clear()
 
 
 ; omit
-testDict.clear()
+exampleDict.clear()

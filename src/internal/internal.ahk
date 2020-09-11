@@ -8,7 +8,7 @@
 ; tests
 
 ; omit
-testDict.clear()
+exampleDict.clear()
 
-testDict.map([200, 403, 404], ["OK", "Access forbidden", "File not found"])
-assert.test(testDict.size, 3)
+exampleDict.map([200, 403, 404], ["OK", "Access forbidden", "File not found"])
+assert.test(exampleDict.size, 3)

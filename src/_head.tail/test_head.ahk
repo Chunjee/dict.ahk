@@ -6,7 +6,7 @@
 #SingleInstance, force
 SetBatchLines, -1
 
-testDict := new dict()
+exampleDict := new dict()
 assert := new unittesting()
 
 ; Start speed function
