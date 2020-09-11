@@ -6,7 +6,7 @@ _hash(param_key) {
 
 	; perform
 	if (IsObject(param_key)) {
-		Hash := &param_key
+		hash := &param_key
 	} else {
 		if param_key is integer
 		{
