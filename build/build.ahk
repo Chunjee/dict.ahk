@@ -1,21 +1,17 @@
-﻿SetBatchLines -1 ;Go as fast as CPU will allow
+﻿SetBatchLines -1 ; Go as fast as CPU will allow
 #NoTrayIcon
 #SingleInstance force
 
-
-#Include %A_ScriptDir%\node_modules
+#Include %A_ScriptDir%\..\node_modules
 #Include biga.ahk\export.ahk
 #Include util-misc.ahk\export.ahk
 
 
 ; FilePaths
-Readme_File := A_ScriptDir "\README.md"
-lib_File := A_ScriptDir "\export.ahk"
-test_File := A_ScriptDir "\tests\test-all.ahk"
-
-methods_File := A_ScriptDir "\methodslist.txt"
-FileRead, methods_arr, % methods_File
-methods_arr := A.compact(A.split(methods_arr, "`r`n"))
+srcPath := RegExReplace(A_ScriptDir,"[^\\]+\\?$") "src"
+Readme_File := RegExReplace(A_ScriptDir,"[^\\]+\\?$") "README.md"
+lib_File := RegExReplace(A_ScriptDir,"[^\\]+\\?$") "export.ahk"
+test_File := RegExReplace(A_ScriptDir,"[^\\]+\\?$") "tests\test-all.ahk"
 
 ; Globals
 A := new biga()
@@ -39,12 +35,12 @@ testfalse := "false\((.+\.\w+)(.+\))\)"
 testnotequal := "notequal\(\w+(\.\w*.*\)),\s*(.*)\)"
 
 ; alias map
-aliasMap := {"set": [,"create", "update"], "get":["__get"], "remove":["delete"]}
+aliasMap := {"set":[,"create","update"], "get":["__Get","read"], "remove":["delete"]}
 
 ; method names
 vMethodNames_Array := []
 
-loop, Files, %A_ScriptDir%\src\*.ahk, R
+loop, Files, %srcPath%\*.ahk, R
 {
 	FileRead, The_MemoryFile, % A_LoopFileFullPath
 
@@ -101,8 +97,8 @@ if (IsObject(msgarray)) {
 ; ===============
 
 FileDelete, % test_File
-test_head := fn_ReadFile(A_ScriptDir "\src\_head.tail\test_head.ahk")
-test_tail := fn_ReadFile(A_ScriptDir "\src\_head.tail\test_tail.ahk")
+test_head := fn_ReadFile(srcPath "\_head.tail\test_head.ahk")
+test_tail := fn_ReadFile(srcPath "\_head.tail\test_tail.ahk")
 
 FileAppend, %test_head%, % test_File
 loop, % The_Array.Count() {
@@ -123,14 +119,13 @@ loop, % The_Array.Count() {
 	vMethodNames_Array.push(element.name)
 }
 ; clipboard := A.join(vMethodNames_Array, "|")
-; msgbox, % A._printObj(A.difference(methods_arr, vMethodNames_Array))
 
 
 ; ===============
 ; DOCS
 ; ===============
 FileDelete, % Readme_File
-DOCS_Array := [fn_ReadFile(A_ScriptDir "\src\_head.tail\doc_head.md")]
+DOCS_Array := [fn_ReadFile(srcPath "\_head.tail\doc_head.md")]
 
 loop, % The_Array.Count() {
 	element := The_Array[A_Index]
@@ -181,15 +176,15 @@ for _, value in The_Array {
 lib_array := A.map(The_Array,Func("fn_AddIndent"))
 fn_AddIndent(value) {
 	global
-	x := A.replace(value.lib,"/m)^(.+)/",A_Tab "$1")
-	x := A.replace(x,"/m`n)^([\s\n\r]*)$/","")
-	x := A.replace(x,"/m`n)(^[\s\n\r]*$)/","")
+	x := A.replace(value.lib, "/m)^(.+)/", A_Tab "$1")
+	x := A.replace(x, "/m`n)^([\s\n\r]*)$/", "")
+	x := A.replace(x, "/m`n)(^[\s\n\r]*$)/", "")
 	return x
 }
 
 FileDelete, % lib_File
-lib_head := A.split(fn_ReadFile(A_ScriptDir "\src\_head.tail\lib_head.ahk"), "`n")
-lib_tail := A.split(fn_ReadFile(A_ScriptDir "\src\_head.tail\lib_tail.ahk"), "`n")
+lib_head := A.split(fn_ReadFile(srcPath "\_head.tail\lib_head.ahk"), "`n")
+lib_tail := A.split(fn_ReadFile(srcPath "\_head.tail\lib_tail.ahk"), "`n")
 lib_txt := A.join(A.concat(lib_head,lib_array,lib_tail),"")
 ; lib_txt := A.replace(lib_txt,"/(^\s*;(?:.*))(?:\r?\n\g<1>)+/","")
 while (RegExMatch(lib_txt, "Om)^(\h*;.*)(?:\R\g<1>){3,}", RE_Match)) {
@@ -199,7 +194,7 @@ FileAppend, %lib_txt%, % lib_File
 
 ; exitmsg := A.join(msgarray, "`n")
 sleep, 100
-Run, %test_File%
+Run, % test_File
 ExitApp, 1
 
 
