@@ -1,4 +1,4 @@
-## dict.ahk
+# dict.ahk
 A modern dictionary package for AutoHotkey
 
 
@@ -25,7 +25,7 @@ exampleDict.has(404)
 ; => true
 ```
 
-You may also review or copy the package from [./export.ahk on GitHub](https://raw.githubusercontent.com/chunjee/dict.ahk/master/export.ahk); #Include it however you would normally when manually downloading.
+You may also review or copy the package from [./export.ahk on GitHub](https://raw.githubusercontent.com/chunjee/dict.ahk/master/export.ahk); #Include it however you would normally when manually downloading a library.
 
 
 ### Attributes
@@ -209,6 +209,9 @@ key (string): The key to lookup in the dictionary
 ```autohotkey
 exampleDict.map([200, 403, 404], ["OK", "Access forbidden", "File not found"])
 exampleDict.get(200)
+; => "OK"
+
+exampleDict[200]
 ; => "OK"
 
 ```

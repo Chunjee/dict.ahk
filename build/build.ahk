@@ -29,7 +29,7 @@ The_Array := [] ; Holds main data
 msgarray := []
 
 ; Test RegEx
-testtest := "test\(\w+(\.\w*.*\)?),\s*(.*)\)"
+testtest := "test\(\w+(\.?\w*.*\)?),\s*(.*)\)"
 testtrue := "true\((.+?)(\(.+?\))\)"
 testfalse := "false\((.+\.\w+)(.+\))\)"
 testnotequal := "notequal\(\w+(\.\w*.*\)),\s*(.*)\)"
