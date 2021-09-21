@@ -35,7 +35,6 @@ assert.label("set()")
 assert.test(exampleDict.set(200, "OK"), 1)
 assert.test(exampleDict.set(403, "Access forbidden"), 2)
 assert.test(exampleDict.set(404, "File not found"), 3)
-
 ; omit
 
 assert.test(exampleDict.update(404, "File not found"), 3)
@@ -72,6 +71,14 @@ exampleDict.map([200, 403, 404], ["OK", "Access forbidden", "File not found"])
 assert.test(exampleDict.size, 3)
 
 
+assert.label("size()")
+exampleDict.map([200, 403, 404], ["OK", "Access forbidden", "File not found"])
+assert.test(exampleDict.size, 3)
+
+; omit
+exampleDict.clear()
+
+
 assert.label("_hash()")
 assert.test(exampleDict._hash(200), 200)
 assert.test(exampleDict._hash(2000), 2000)
@@ -83,6 +90,7 @@ assert.test(exampleDict._hash(2000.1), 4656511348273210982)
 assert.label("get()")
 exampleDict.map([200, 403, 404], ["OK", "Access forbidden", "File not found"])
 assert.test(exampleDict.get(200), "OK")
+assert.test(exampleDict[200], "OK")
 
 ; omit
 exampleDict.clear()
@@ -91,14 +99,6 @@ exampleDict.clear()
 assert.label("has()")
 exampleDict.map([200, 403, 404], ["OK", "Access forbidden", "File not found"])
 assert.true(exampleDict.has(200))
-
-; omit
-exampleDict.clear()
-
-
-assert.label("size()")
-exampleDict.clear()
-
 
 ; omit
 exampleDict.clear()
