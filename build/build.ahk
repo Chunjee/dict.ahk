@@ -9,9 +9,9 @@
 
 ; FilePaths
 srcPath := RegExReplace(A_ScriptDir,"[^\\]+\\?$") "src"
-Readme_File := RegExReplace(A_ScriptDir,"[^\\]+\\?$") "README.md"
+Readme_File := RegExReplace(A_ScriptDir,"[^\\]+\\?$") "\docs\README.md"
 lib_File := RegExReplace(A_ScriptDir,"[^\\]+\\?$") "export.ahk"
-test_File := RegExReplace(A_ScriptDir,"[^\\]+\\?$") "tests\test-all.ahk"
+test_File := RegExReplace(A_ScriptDir,"[^\\]+\\?$") "test\test-all.ahk"
 
 ; Globals
 A := new biga()

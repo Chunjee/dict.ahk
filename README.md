@@ -10,7 +10,7 @@ In a terminal or command line navigated to your project folder:
 npm install dict.ahk
 ```
 
-In your code:
+In your code only export.ahk needs to be included:
 
 ```autohotkey
 #Include %A_ScriptDir%\node_modules
@@ -25,7 +25,7 @@ exampleDict.has(404)
 ; => true
 ```
 
-You may also review or copy the package from [./export.ahk on GitHub](https://raw.githubusercontent.com/chunjee/dict.ahk/master/export.ahk); #Include it however you would normally when manually downloading a library.
+You may also review or copy the package from [./export.ahk on GitHub](https://raw.githubusercontent.com/chunjee/dict.ahk/master/export.ahk); #Incude as you would normally when manually downloading.
 
 
 ### Attributes
@@ -44,28 +44,6 @@ Contains all Key/Value pairs of the dictionary. Iterating is discouraged and no 
 Including the module provides a class `dict` with seven methods: `.set`, `.get`, `.has`, `.map`, `.remove`, `.clear`, `.clone`
 
 # **Create methods**
-## .clone
-creates and returns a new clone of the dictionary.
-
-#### Arguments
-none
-
-
-#### Returns
-(array): A new clone of the dictionary.
-
-#### Example
-```autohotkey
-exampleDict.map([200, 403, 404], ["OK", "Access forbidden", "File not found"])
-
-dictClone := exampleDict.clone()
-dictClone.has(200)
-; => true
-```
-
-
-
-
 ## .map
 Maps a key array and value array to the dictionary.
 
@@ -122,6 +100,77 @@ exampleDict.set(403, "Access forbidden")
 
 exampleDict.set(404, "File not found")
 ; => 3
+
+```
+
+
+
+## .clone
+creates and returns a new clone of the dictionary.
+
+#### Arguments
+none
+
+
+#### Returns
+(array): A new clone of the dictionary.
+
+#### Example
+```autohotkey
+exampleDict.map([200, 403, 404], ["OK", "Access forbidden", "File not found"])
+
+dictClone := exampleDict.clone()
+dictClone.has(200)
+; => true
+```
+
+
+
+
+
+# **Read methods**
+## .get
+Reads the value associated with the key.
+
+#### Arguments
+key (string): The key to lookup in the dictionary
+
+
+#### Returns
+(*): The value associated with the key, else `false`
+
+
+#### Example
+
+```autohotkey
+exampleDict.map([200, 403, 404], ["OK", "Access forbidden", "File not found"])
+exampleDict.get(200)
+; => "OK"
+
+exampleDict[200]
+; => "OK"
+
+```
+
+
+
+## .has
+Reads if the key exists in the dictionary
+
+#### Arguments
+key (string): The key to lookup in the dictionary
+
+
+#### Returns
+(boolean): `true` if the key exists, else `false`
+
+
+#### Example
+
+```autohotkey
+exampleDict.map([200, 403, 404], ["OK", "Access forbidden", "File not found"])
+exampleDict.has(200)
+; => true
 
 ```
 
@@ -186,54 +235,5 @@ exampleDict.remove(500)
 
 exampleDict.size
 ; => 0
-
-```
-
-
-
-
-# **Read methods**
-## .get
-Reads the value associated with the key.
-
-#### Arguments
-key (string): The key to lookup in the dictionary
-
-
-#### Returns
-(*): The value associated with the key, else `false`
-
-
-#### Example
-
-```autohotkey
-exampleDict.map([200, 403, 404], ["OK", "Access forbidden", "File not found"])
-exampleDict.get(200)
-; => "OK"
-
-exampleDict[200]
-; => "OK"
-
-```
-
-
-
-## .has
-Reads if the key exists in the dictionary
-
-#### Arguments
-key (string): The key to lookup in the dictionary
-
-
-#### Returns
-(boolean): `true` if the key exists, else `false`
-
-
-#### Example
-
-```autohotkey
-exampleDict.map([200, 403, 404], ["OK", "Access forbidden", "File not found"])
-exampleDict.has(200)
-; => true
 
 ```
